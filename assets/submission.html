@@ -1,0 +1,351 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CTO / VP Engineering — Take-Home Submission</title>
+<style>
+  @page { size: Letter; margin: 0.65in 0.7in; }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    background: #FFFFFF;
+    color: #1B2430;
+  }
+  body {
+    font-family: "Iowan Old Style", "Palatino Linotype", Georgia, "Times New Roman", serif;
+    font-size: 10.8pt;
+    line-height: 1.42;
+  }
+  .masthead {
+    border-bottom: 2px solid #1B2430;
+    padding-bottom: 0.8rem;
+    margin-bottom: 1.4rem;
+  }
+  .masthead .kicker {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 8.5pt;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #3B6E78;
+    margin-bottom: 0.6rem;
+  }
+  .masthead h1 {
+    font-size: 17pt;
+    line-height: 1.2;
+    margin: 0 0 0.6rem;
+    font-weight: 600;
+  }
+  .meta {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.15rem 0.6rem;
+    font-size: 9pt;
+    color: #5B6670;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+  .meta dt { font-weight: 600; color: #1B2430; }
+  .meta dd { margin: 0; }
+
+  h2 {
+    font-size: 11.6pt;
+    margin-top: 0.85rem;
+    margin-bottom: 0.35rem;
+    padding-bottom: 0.15rem;
+    border-bottom: 1px solid #D8DCDD;
+  }
+  h2 .sect { color: #3B6E78; font-weight: 600; margin-right: 0.45em; }
+  p { margin: 0 0 0.42rem; }
+  ul, ol { margin: 0.3rem 0 0.6rem; padding-left: 1.2rem; }
+  li { margin-bottom: 0.25rem; }
+  strong { color: #1B2430; }
+
+  table { border-collapse: collapse; width: 100%; margin: 0.6rem 0; font-size: 9.6pt; }
+  th, td { text-align: left; padding: 0.3rem 0.5rem; border-bottom: 1px solid #D8DCDD; vertical-align: top; }
+  th { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 8pt; letter-spacing: 0.05em; text-transform: uppercase; color: #5B6670; }
+
+  .callout {
+    background: #F8F9F9;
+    border: 1px solid #D8DCDD;
+    border-left: 3px solid #B8793A;
+    border-radius: 3px;
+    padding: 0.6rem 0.9rem;
+    margin: 0.7rem 0;
+  }
+  .callout .label {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 8pt;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #B8793A;
+    display: block;
+    margin-bottom: 0.35rem;
+  }
+  .callout ul { margin: 0; }
+
+  .risk-list { list-style: none; padding: 0; margin: 0.5rem 0; }
+  .risk-list li { padding: 0.4rem 0; border-top: 1px solid #D8DCDD; }
+  .risk-list li:first-child { border-top: none; }
+  .risk-num { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; color: #3B6E78; font-weight: 600; margin-right: 0.35em; }
+  .risk-list .signal { display: block; color: #5B6670; font-style: italic; font-size: 10pt; margin-top: 0.15rem; }
+
+  code {
+    font-family: ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
+    font-size: 0.86em;
+    background: #EDEFEF;
+    padding: 0.08em 0.3em;
+    border-radius: 3px;
+  }
+  pre {
+    background: #EDEFEF;
+    border: 1px solid #D8DCDD;
+    border-radius: 4px;
+    padding: 0.35rem 0.55rem;
+    font-size: 6.9pt;
+    line-height: 1.16;
+    font-family: ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
+    white-space: pre-wrap;
+  }
+  pre code { background: none; padding: 0; }
+
+  .diagram-wrap {
+    background: #FFFFFF;
+    border: 1px solid #D8DCDD;
+    border-radius: 4px;
+    padding: 0.35rem;
+    margin: 0.4rem 0;
+    text-align: center;
+  }
+  .diagram-wrap svg { width: 100%; height: auto; max-width: 330px; }
+  .caption { font-size: 8.6pt; color: #5B6670; font-style: italic; margin-top: 0.2rem; }
+
+  .disclosure {
+    margin-top: 1.2rem;
+    padding-top: 0.7rem;
+    border-top: 1px solid #D8DCDD;
+    font-size: 9pt;
+    color: #5B6670;
+  }
+  .disclosure .label {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 8pt;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #3B6E78;
+    display: block;
+    margin-bottom: 0.35rem;
+  }
+
+  .page-break { page-break-before: always; }
+  .partb-header h1 { font-size: 14pt; }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="kicker">CTO / VP Engineering — Take-Home Submission</div>
+  <h1>Growing Into Two New Markets Without Breaking How We Handle Money</h1>
+  <dl class="meta">
+    <dt>To</dt><dd>CEO, Engineering Leads</dd>
+    <dt>From</dt><dd>Incoming CTO / VP Engineering</dd>
+    <dt>Re</dt><dd>Our plan for the next 6 months</dd>
+  </dl>
+</div>
+
+<h2><span class="sect">§1</span>Build once, stop copy-pasting</h2>
+<p>Today, every time we enter a region we copy our entire system and run it as its own separate version. Three regions means three copies, slowly drifting apart — different settings, different quirks, different bugs. That's why region 3 took four months instead of six weeks.</p>
+<p><strong>The call:</strong> stop copying the whole system. Build one shared "engine room" for the most sensitive part of the business — moving and tracking money — and have every region plug into that <em>same</em> engine instead of running its own copy. Everything customer-facing — branding, local promotions, local look-and-feel — stays flexible per region, because that's supposed to differ brand to brand.</p>
+<p><strong>The cost, honestly:</strong> changing the money engine while the business keeps running is like swapping a plane's engine mid-flight. We won't do it recklessly — we'll run the new engine quietly alongside the old one, prove it gives identical answers, then switch regions over one at a time. Slower than just copying region 4, and we're choosing that trade-off on purpose, because copying is what's already causing our incidents.</p>
+
+<h2><span class="sect">§2</span>One rulebook, local exceptions allowed</h2>
+<p>One region's settings file has ballooned to 25,000 lines because nobody reuses a shared starting point — every region rewrites everything from scratch. We'll give every region one shared rulebook with sensible defaults; regions only write down what's <em>different</em> about them. New regions start clean and small; existing ones get cleaned up as part of this same project, not a separate effort later.</p>
+
+<h2><span class="sect">§3</span>Payments: build our own toolkit, rent speed for now</h2>
+<p>We have 100+ hand-built connections to payment companies, each taking a senior engineer 2-3 weeks — our biggest drain on senior talent, and it only grows as we add markets and brands.</p>
+<p>Two things, in parallel: we start building our own reusable toolkit so future payment connections are faster and cheaper to build. But that toolkit won't be ready in time to carry the two markets we've already committed to — so for those two, we partner with an outside payments specialist who already has the local connections built, to protect the deadline. We fold those into our own toolkit later, once both launches are stable.</p>
+
+<h2><span class="sect">§4</span>The team should match the new plan, not the old one</h2>
+<p>Today, knowledge about how money moves through our system lives in the heads of a handful of senior engineers — exactly why mistakes happen when they're stretched thin. We'll create one dedicated team that owns the shared money engine and writes down what's currently only in people's memory. A second, temporary team gets the two new markets live. Our data/reporting team and brand-facing teams keep doing exactly what they're doing — nothing changes there.</p>
+<p>If this doesn't match how the org chart looks today, we change the org chart, not the plan — today's setup is part of why we have incidents.</p>
+
+<h2><span class="sect">§5</span>The six-month plan — and what we'll deliberately skip</h2>
+<table>
+  <tr><th>When</th><th>What happens</th></tr>
+  <tr><td><strong>Months 1–2</strong></td><td>Stop copying regions. Start the new team. Agree on the shared rulebook and the shared payments toolkit's design. Line up the outside payments partner for the two new markets.</td></tr>
+  <tr><td><strong>Months 3–4</strong></td><td>Shared money engine goes live in our first region after being tested side-by-side. First new market launches, built clean from day one.</td></tr>
+  <tr><td><strong>Months 5–6</strong></td><td>Remaining regions move to the shared engine. Second new market launches.</td></tr>
+</table>
+
+<div class="callout">
+  <span class="label">What we will deliberately NOT do in these 6 months</span>
+  <ul>
+    <li>Rebuild the parts of the system that are allowed to differ by brand — look and feel, promotions.</li>
+    <li>Touch our data/reporting platform. It works; leave it alone.</li>
+    <li>Try to force all old regions to match perfectly — just stop the gap from growing.</li>
+    <li>Switch all regions over at once — one at a time, carefully checked.</li>
+    <li>Reorganize anything beyond the one new team until we've proven the approach, around month 3.</li>
+  </ul>
+</div>
+
+<h2><span class="sect">§6</span>Three ways this could go wrong</h2>
+<ul class="risk-list">
+  <li><span class="risk-num">1</span><strong>The switch-over itself causes a money mistake.</strong><span class="signal">Safeguard — we don't flip the switch until the new engine and old engine agree on every number, with zero exceptions.</span></li>
+  <li><span class="risk-num">2</span><strong>A new market's local payment method isn't ready in time.</strong><span class="signal">Safeguard — by month 2, every payment method either works through our outside partner or is actively being built; if not, we escalate immediately.</span></li>
+  <li><span class="risk-num">3</span><strong>The same few senior people are needed everywhere at once.</strong><span class="signal">Safeguard — if the same names block both the engine work and the new launches in the same week, we add people or cut scope, not push harder.</span></li>
+</ul>
+
+<div class="page-break"></div>
+
+<div class="masthead partb-header">
+  <div class="kicker">Hands-On Design</div>
+  <h1>Part B — Exactly-Once Wallet Crediting</h1>
+  <p style="margin:0; color:#5B6670; font-size:10pt;">A payment provider delivers a duplicate or delayed success callback. This is the mechanism that makes crediting exactly-once regardless of provider behavior.</p>
+</div>
+
+<h2><span class="sect">B1</span>Schema</h2>
+<pre><code>CREATE TABLE funding_transactions (
+    id                      UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    wallet_id               UUID NOT NULL REFERENCES wallets(id),
+    provider                TEXT NOT NULL,
+    provider_transaction_id TEXT NOT NULL,
+    amount_minor_units      BIGINT NOT NULL,      -- integer minor units, never float
+    currency                TEXT NOT NULL,
+    status                  TEXT NOT NULL DEFAULT 'pending', -- pending | credited | failed
+    raw_payload             JSONB NOT NULL,
+    created_at              TIMESTAMPTZ NOT NULL DEFAULT now(),
+    updated_at              TIMESTAMPTZ NOT NULL DEFAULT now(),
+    UNIQUE (provider, provider_transaction_id)     -- duplicate-killer
+);
+
+CREATE TABLE wallets (
+    id                  UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    player_id           UUID NOT NULL,
+    balance_minor_units BIGINT NOT NULL DEFAULT 0, -- cached, derivable from ledger
+    currency            TEXT NOT NULL,
+    updated_at          TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE TABLE ledger_entries (                       -- append-only, source of truth
+    id                      UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    wallet_id               UUID NOT NULL REFERENCES wallets(id),
+    funding_transaction_id  UUID NOT NULL REFERENCES funding_transactions(id),
+    entry_type              TEXT NOT NULL,           -- credit | debit | correction
+    amount_minor_units      BIGINT NOT NULL,
+    created_at              TIMESTAMPTZ NOT NULL DEFAULT now(),
+    UNIQUE (funding_transaction_id)                  -- at most one ledger entry per txn
+);</code></pre>
+<p class="caption">Two unique constraints — <code>(provider, provider_transaction_id)</code> and <code>ledger_entries.funding_transaction_id</code> — are the entire exactly-once mechanism.</p>
+
+<h2><span class="sect">B2</span>Sequence diagram — duplicate and concurrent callbacks</h2>
+<div class="diagram-wrap">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 780" width="1040" height="780" font-family="ui-monospace, SF Mono, Menlo, Consolas, monospace">
+<rect x="0" y="0" width="1040" height="780" fill="#FFFFFF"/>
+<defs>
+  <marker id="arrowSolid" markerWidth="9" markerHeight="9" refX="7" refY="2.5" orient="auto" markerUnits="strokeWidth">
+    <path d="M0,0 L7,2.5 L0,5 Z" fill="#1B2430"/>
+  </marker>
+  <marker id="arrowOpen" markerWidth="9" markerHeight="9" refX="7" refY="2.5" orient="auto" markerUnits="strokeWidth">
+    <path d="M0,0 L7,2.5 L0,5" fill="none" stroke="#5B6670" stroke-width="1.1"/>
+  </marker>
+</defs>
+<line x1="120" y1="50" x2="120" y2="750" stroke="#D8DCDD" stroke-width="1.3" stroke-dasharray="3,3"/>
+<rect x="36.0" y="16" width="168" height="34" rx="4" fill="#F5F6F6" stroke="#3B6E78" stroke-width="1.1"/>
+<text x="120" y="31.0" font-size="10" fill="#1B2430" text-anchor="middle" font-weight="600">Provider</text>
+<text x="120" y="42.0" font-size="10" fill="#1B2430" text-anchor="middle" font-weight="600">callback #1</text>
+<line x1="340" y1="50" x2="340" y2="750" stroke="#D8DCDD" stroke-width="1.3" stroke-dasharray="3,3"/>
+<rect x="256.0" y="16" width="168" height="34" rx="4" fill="#F5F6F6" stroke="#3B6E78" stroke-width="1.1"/>
+<text x="340" y="25.5" font-size="10" fill="#1B2430" text-anchor="middle" font-weight="600">Provider</text>
+<text x="340" y="36.5" font-size="10" fill="#1B2430" text-anchor="middle" font-weight="600">callback #2</text>
+<text x="340" y="47.5" font-size="10" fill="#1B2430" text-anchor="middle" font-weight="600">(dup/concurrent)</text>
+<line x1="600" y1="50" x2="600" y2="750" stroke="#D8DCDD" stroke-width="1.3" stroke-dasharray="3,3"/>
+<rect x="516.0" y="16" width="168" height="34" rx="4" fill="#F5F6F6" stroke="#3B6E78" stroke-width="1.1"/>
+<text x="600" y="31.0" font-size="10" fill="#1B2430" text-anchor="middle" font-weight="600">Callback</text>
+<text x="600" y="42.0" font-size="10" fill="#1B2430" text-anchor="middle" font-weight="600">Handler</text>
+<line x1="880" y1="50" x2="880" y2="750" stroke="#D8DCDD" stroke-width="1.3" stroke-dasharray="3,3"/>
+<rect x="796.0" y="16" width="168" height="34" rx="4" fill="#F5F6F6" stroke="#3B6E78" stroke-width="1.1"/>
+<text x="880" y="36.5" font-size="10" fill="#1B2430" text-anchor="middle" font-weight="600">Postgres</text>
+<text x="360.0" y="74.0" font-size="10" fill="#1B2430" text-anchor="middle">POST /callback (txn_ref=X)</text>
+<line x1="120" y1="80" x2="596.5" y2="80" stroke="#1B2430" stroke-width="1.4" marker-end="url(#arrowSolid)"/>
+<text x="740.0" y="110.0" font-size="10" fill="#1B2430" text-anchor="middle">BEGIN TX1</text>
+<line x1="600" y1="116" x2="876.5" y2="116" stroke="#1B2430" stroke-width="1.4" marker-end="url(#arrowSolid)"/>
+<text x="740.0" y="146.0" font-size="10" fill="#1B2430" text-anchor="middle">INSERT funding_transactions ON CONFLICT DO NOTHING</text>
+<line x1="600" y1="152" x2="876.5" y2="152" stroke="#1B2430" stroke-width="1.4" marker-end="url(#arrowSolid)"/>
+<rect x="765.0" y="174.0" width="230" height="40" rx="3" fill="#EDEFEF" stroke="#D8DCDD" stroke-width="1"/>
+<text x="880" y="189.0" font-size="9.5" fill="#5B6670" font-style="italic" font-weight="400" text-anchor="middle">TX1 holds the unique-index</text>
+<text x="880" y="202.0" font-size="9.5" fill="#5B6670" font-style="italic" font-weight="400" text-anchor="middle">lock on (provider, txn_ref)</text>
+<text x="470.0" y="234.0" font-size="10" fill="#1B2430" text-anchor="middle">POST /callback (txn_ref=X)</text>
+<line x1="340" y1="240" x2="596.5" y2="240" stroke="#1B2430" stroke-width="1.4" marker-end="url(#arrowSolid)"/>
+<text x="740.0" y="270.0" font-size="10" fill="#1B2430" text-anchor="middle">BEGIN TX2</text>
+<line x1="600" y1="276" x2="876.5" y2="276" stroke="#1B2430" stroke-width="1.4" marker-end="url(#arrowSolid)"/>
+<text x="740.0" y="306.0" font-size="10" fill="#1B2430" text-anchor="middle">INSERT funding_transactions ON CONFLICT DO NOTHING</text>
+<line x1="600" y1="312" x2="876.5" y2="312" stroke="#1B2430" stroke-width="1.4" marker-end="url(#arrowSolid)"/>
+<rect x="765.0" y="334.0" width="230" height="40" rx="3" fill="#FBF1E2" stroke="#B8793A" stroke-width="1"/>
+<text x="880" y="349.0" font-size="9.5" fill="#8A5A22" font-style="italic" font-weight="600" text-anchor="middle">TX2 BLOCKS on TX1's lock —</text>
+<text x="880" y="362.0" font-size="9.5" fill="#8A5A22" font-style="italic" font-weight="600" text-anchor="middle">stopped here</text>
+<text x="740.0" y="383.5" font-size="10" fill="#1B2430" text-anchor="middle">TX1: UPDATE wallet, INSERT ledger_entry,</text>
+<text x="740.0" y="394.0" font-size="10" fill="#1B2430" text-anchor="middle">status=credited</text>
+<line x1="600" y1="400" x2="876.5" y2="400" stroke="#1B2430" stroke-width="1.4" marker-end="url(#arrowSolid)"/>
+<text x="740.0" y="430.0" font-size="10" fill="#1B2430" text-anchor="middle">TX1: COMMIT</text>
+<line x1="600" y1="436" x2="876.5" y2="436" stroke="#1B2430" stroke-width="1.4" marker-end="url(#arrowSolid)"/>
+<text x="740.0" y="466.0" font-size="10" fill="#1B2430" text-anchor="middle">committed, row visible</text>
+<line x1="880" y1="472" x2="603.5" y2="472" stroke="#5B6670" stroke-width="1.4" stroke-dasharray="5,3" marker-end="url(#arrowOpen)"/>
+<text x="360.0" y="502.0" font-size="10" fill="#1B2430" text-anchor="middle">200 OK</text>
+<line x1="600" y1="508" x2="123.5" y2="508" stroke="#5B6670" stroke-width="1.4" stroke-dasharray="5,3" marker-end="url(#arrowOpen)"/>
+<rect x="765.0" y="530.0" width="230" height="40" rx="3" fill="#EDEFEF" stroke="#D8DCDD" stroke-width="1"/>
+<text x="880" y="545.0" font-size="9.5" fill="#5B6670" font-style="italic" font-weight="400" text-anchor="middle">TX2 unblocks — its INSERT</text>
+<text x="880" y="558.0" font-size="9.5" fill="#5B6670" font-style="italic" font-weight="400" text-anchor="middle">returns 0 rows</text>
+<text x="740.0" y="590.0" font-size="10" fill="#1B2430" text-anchor="middle">TX2: SELECT status WHERE (provider, txn_ref)</text>
+<line x1="600" y1="596" x2="876.5" y2="596" stroke="#1B2430" stroke-width="1.4" marker-end="url(#arrowSolid)"/>
+<text x="740.0" y="626.0" font-size="10" fill="#1B2430" text-anchor="middle">status = credited</text>
+<line x1="880" y1="632" x2="603.5" y2="632" stroke="#5B6670" stroke-width="1.4" stroke-dasharray="5,3" marker-end="url(#arrowOpen)"/>
+<text x="740.0" y="662.0" font-size="10" fill="#1B2430" text-anchor="middle">TX2: COMMIT (no writes)</text>
+<line x1="600" y1="668" x2="876.5" y2="668" stroke="#1B2430" stroke-width="1.4" marker-end="url(#arrowSolid)"/>
+<text x="470.0" y="698.0" font-size="10" fill="#1B2430" text-anchor="middle">200 OK — idempotent no-op</text>
+<line x1="600" y1="704" x2="343.5" y2="704" stroke="#5B6670" stroke-width="1.4" stroke-dasharray="5,3" marker-end="url(#arrowOpen)"/>
+</svg>
+</div>
+<p class="caption">The duplicate is stopped by the row already existing; the concurrent case is stopped earlier — the unique index forces the second transaction to block until the first resolves, so there's no window where both believe they're first.</p>
+
+<h2><span class="sect">B3</span>Pseudo-code — callback handler</h2>
+<pre><code>function handleCallback(payload):
+    walletId = resolveWallet(payload)
+
+    BEGIN TRANSACTION   -- single boundary: insert, credit, ledger all-or-nothing
+
+        row = EXEC(
+            "INSERT INTO funding_transactions
+                (wallet_id, provider, provider_transaction_id, amount_minor_units, currency, raw_payload)
+             VALUES ($1,$2,$3,$4,$5,$6)
+             ON CONFLICT (provider, provider_transaction_id) DO NOTHING
+             RETURNING id"
+        )
+
+        if row is empty:                      -- duplicate, or lost the lock race
+            existing = EXEC("SELECT status FROM funding_transactions
+                              WHERE provider=$1 AND provider_transaction_id=$2", ...)
+            COMMIT
+            return 200 OK                      -- idempotent: already handled
+
+        -- single winner for this provider_transaction_id
+        EXEC("UPDATE wallets SET balance_minor_units = balance_minor_units + $1,
+              updated_at = now() WHERE id = $2", payload.amount, walletId)
+
+        EXEC("INSERT INTO ledger_entries (wallet_id, funding_transaction_id, entry_type, amount_minor_units)
+              VALUES ($1,$2,'credit',$3)", walletId, row.id, payload.amount)
+
+        EXEC("UPDATE funding_transactions SET status='credited', updated_at=now() WHERE id=$1", row.id)
+
+    COMMIT
+    return 200 OK</code></pre>
+<p class="caption">No check-then-insert in application code — the uniqueness check <em>is</em> the insert, enforced by the database, so there's no gap for a race to live in.</p>
+
+<h2><span class="sect">B4</span>Brief answers</h2>
+<p><strong>Crash after commit, before the provider receives the 200:</strong> harmless. The transaction already committed — status is <code>credited</code>, wallet and ledger are updated. The provider retries on no-200; the retry's insert conflicts, the handler reads back <code>credited</code>, returns 200, no further writes. Idempotency lives in committed state, not in whether a response was delivered.</p>
+<p><strong>Detecting residual drift:</strong> a scheduled job compares each wallet's <code>balance_minor_units</code> against <code>SUM(ledger_entries.amount_minor_units)</code>. Any mismatch is drift — no tolerance band, because amounts are integer minor units, not floats (the float-rounding incident is itself the argument against ever storing money as floating point). On drift: freeze the wallet from further debits, page on-call, diff against <code>funding_transactions</code> to localize the transaction. The fix is always an appended correcting <code>ledger_entries</code> row, never an <code>UPDATE</code> to history.</p>
+
+<div class="disclosure">
+  <span class="label">AI tool disclosure</span>
+  <p style="margin:0;">Drafted with Claude (Anthropic) as a thinking/writing partner: structuring the memo, drafting prose, generating schema/pseudo-code/sequence diagram, and stress-testing the architecture for consistency across both parts. Positions, trade-offs, and sequencing are mine; I can defend each decision and its failure modes in discussion.</p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 780" width="1040" height="780" font-family="ui-monospace, SF Mono, Menlo, Consolas, monospace">
+<rect x="0" y="0" width="1040" height="780" fill="#FFFFFF"/>
+<defs>
+  <marker id="arrowSolid" markerWidth="9" markerHeight="9" refX="7" refY="2.5" orient="auto" markerUnits="strokeWidth">
+    <path d="M0,0 L7,2.5 L0,5 Z" fill="#1B2430"/>
+  </marker>
+  <marker id="arrowOpen" markerWidth="9" markerHeight="9" refX="7" refY="2.5" orient="auto" markerUnits="strokeWidth">
+    <path d="M0,0 L7,2.5 L0,5" fill="none" stroke="#5B6670" stroke-width="1.1"/>
+  </marker>
+</defs>
+<line x1="120" y1="50" x2="120" y2="750" stroke="#D8DCDD" stroke-width="1.3" stroke-dasharray="3,3"/>
+<rect x="36.0" y="16" width="168" height="34" rx="4" fill="#F5F6F6" stroke="#3B6E78" stroke-width="1.1"/>
+<text x="120" y="31.0" font-size="10" fill="#1B2430" text-anchor="middle" font-weight="600">Provider</text>
+<text x="120" y="42.0" font-size="10" fill="#1B2430" text-anchor="middle" font-weight="600">callback #1</text>
+<line x1="340" y1="50" x2="340" y2="750" stroke="#D8DCDD" stroke-width="1.3" stroke-dasharray="3,3"/>
+<rect x="256.0" y="16" width="168" height="34" rx="4" fill="#F5F6F6" stroke="#3B6E78" stroke-width="1.1"/>
+<text x="340" y="25.5" font-size="10" fill="#1B2430" text-anchor="middle" font-weight="600">Provider</text>
+<text x="340" y="36.5" font-size="10" fill="#1B2430" text-anchor="middle" font-weight="600">callback #2</text>
+<text x="340" y="47.5" font-size="10" fill="#1B2430" text-anchor="middle" font-weight="600">(dup/concurrent)</text>
+<line x1="600" y1="50" x2="600" y2="750" stroke="#D8DCDD" stroke-width="1.3" stroke-dasharray="3,3"/>
+<rect x="516.0" y="16" width="168" height="34" rx="4" fill="#F5F6F6" stroke="#3B6E78" stroke-width="1.1"/>
+<text x="600" y="31.0" font-size="10" fill="#1B2430" text-anchor="middle" font-weight="600">Callback</text>
+<text x="600" y="42.0" font-size="10" fill="#1B2430" text-anchor="middle" font-weight="600">Handler</text>
+<line x1="880" y1="50" x2="880" y2="750" stroke="#D8DCDD" stroke-width="1.3" stroke-dasharray="3,3"/>
+<rect x="796.0" y="16" width="168" height="34" rx="4" fill="#F5F6F6" stroke="#3B6E78" stroke-width="1.1"/>
+<text x="880" y="36.5" font-size="10" fill="#1B2430" text-anchor="middle" font-weight="600">Postgres</text>
+<text x="360.0" y="74.0" font-size="10" fill="#1B2430" text-anchor="middle">POST /callback (txn_ref=X)</text>
+<line x1="120" y1="80" x2="596.5" y2="80" stroke="#1B2430" stroke-width="1.4" marker-end="url(#arrowSolid)"/>
+<text x="740.0" y="110.0" font-size="10" fill="#1B2430" text-anchor="middle">BEGIN TX1</text>
+<line x1="600" y1="116" x2="876.5" y2="116" stroke="#1B2430" stroke-width="1.4" marker-end="url(#arrowSolid)"/>
+<text x="740.0" y="146.0" font-size="10" fill="#1B2430" text-anchor="middle">INSERT funding_transactions ON CONFLICT DO NOTHING</text>
+<line x1="600" y1="152" x2="876.5" y2="152" stroke="#1B2430" stroke-width="1.4" marker-end="url(#arrowSolid)"/>
+<rect x="765.0" y="174.0" width="230" height="40" rx="3" fill="#EDEFEF" stroke="#D8DCDD" stroke-width="1"/>
+<text x="880" y="189.0" font-size="9.5" fill="#5B6670" font-style="italic" font-weight="400" text-anchor="middle">TX1 holds the unique-index</text>
+<text x="880" y="202.0" font-size="9.5" fill="#5B6670" font-style="italic" font-weight="400" text-anchor="middle">lock on (provider, txn_ref)</text>
+<text x="470.0" y="234.0" font-size="10" fill="#1B2430" text-anchor="middle">POST /callback (txn_ref=X)</text>
+<line x1="340" y1="240" x2="596.5" y2="240" stroke="#1B2430" stroke-width="1.4" marker-end="url(#arrowSolid)"/>
+<text x="740.0" y="270.0" font-size="10" fill="#1B2430" text-anchor="middle">BEGIN TX2</text>
+<line x1="600" y1="276" x2="876.5" y2="276" stroke="#1B2430" stroke-width="1.4" marker-end="url(#arrowSolid)"/>
+<text x="740.0" y="306.0" font-size="10" fill="#1B2430" text-anchor="middle">INSERT funding_transactions ON CONFLICT DO NOTHING</text>
+<line x1="600" y1="312" x2="876.5" y2="312" stroke="#1B2430" stroke-width="1.4" marker-end="url(#arrowSolid)"/>
+<rect x="765.0" y="334.0" width="230" height="40" rx="3" fill="#FBF1E2" stroke="#B8793A" stroke-width="1"/>
+<text x="880" y="349.0" font-size="9.5" fill="#8A5A22" font-style="italic" font-weight="600" text-anchor="middle">TX2 BLOCKS on TX1's lock —</text>
+<text x="880" y="362.0" font-size="9.5" fill="#8A5A22" font-style="italic" font-weight="600" text-anchor="middle">stopped here</text>
+<text x="740.0" y="383.5" font-size="10" fill="#1B2430" text-anchor="middle">TX1: UPDATE wallet, INSERT ledger_entry,</text>
+<text x="740.0" y="394.0" font-size="10" fill="#1B2430" text-anchor="middle">status=credited</text>
+<line x1="600" y1="400" x2="876.5" y2="400" stroke="#1B2430" stroke-width="1.4" marker-end="url(#arrowSolid)"/>
+<text x="740.0" y="430.0" font-size="10" fill="#1B2430" text-anchor="middle">TX1: COMMIT</text>
+<line x1="600" y1="436" x2="876.5" y2="436" stroke="#1B2430" stroke-width="1.4" marker-end="url(#arrowSolid)"/>
+<text x="740.0" y="466.0" font-size="10" fill="#1B2430" text-anchor="middle">committed, row visible</text>
+<line x1="880" y1="472" x2="603.5" y2="472" stroke="#5B6670" stroke-width="1.4" stroke-dasharray="5,3" marker-end="url(#arrowOpen)"/>
+<text x="360.0" y="502.0" font-size="10" fill="#1B2430" text-anchor="middle">200 OK</text>
+<line x1="600" y1="508" x2="123.5" y2="508" stroke="#5B6670" stroke-width="1.4" stroke-dasharray="5,3" marker-end="url(#arrowOpen)"/>
+<rect x="765.0" y="530.0" width="230" height="40" rx="3" fill="#EDEFEF" stroke="#D8DCDD" stroke-width="1"/>
+<text x="880" y="545.0" font-size="9.5" fill="#5B6670" font-style="italic" font-weight="400" text-anchor="middle">TX2 unblocks — its INSERT</text>
+<text x="880" y="558.0" font-size="9.5" fill="#5B6670" font-style="italic" font-weight="400" text-anchor="middle">returns 0 rows</text>
+<text x="740.0" y="590.0" font-size="10" fill="#1B2430" text-anchor="middle">TX2: SELECT status WHERE (provider, txn_ref)</text>
+<line x1="600" y1="596" x2="876.5" y2="596" stroke="#1B2430" stroke-width="1.4" marker-end="url(#arrowSolid)"/>
+<text x="740.0" y="626.0" font-size="10" fill="#1B2430" text-anchor="middle">status = credited</text>
+<line x1="880" y1="632" x2="603.5" y2="632" stroke="#5B6670" stroke-width="1.4" stroke-dasharray="5,3" marker-end="url(#arrowOpen)"/>
+<text x="740.0" y="662.0" font-size="10" fill="#1B2430" text-anchor="middle">TX2: COMMIT (no writes)</text>
+<line x1="600" y1="668" x2="876.5" y2="668" stroke="#1B2430" stroke-width="1.4" marker-end="url(#arrowSolid)"/>
+<text x="470.0" y="698.0" font-size="10" fill="#1B2430" text-anchor="middle">200 OK — idempotent no-op</text>
+<line x1="600" y1="704" x2="343.5" y2="704" stroke="#5B6670" stroke-width="1.4" stroke-dasharray="5,3" marker-end="url(#arrowOpen)"/>
+</svg>
